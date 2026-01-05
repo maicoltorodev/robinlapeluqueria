@@ -1,6 +1,6 @@
 "use client"
 
-import { Scissors, Palette, Sparkles, User } from "lucide-react"
+import { Scissors, Palette, Sparkles, User, Hand, Circle, Heart } from "lucide-react"
 import { ScrollAnimation } from "@/components/scroll-animation"
 
 const services = [
@@ -23,8 +23,26 @@ const services = [
     description: "Recupera la salud y el brillo de tu cabello con nuestros tratamientos especializados. Nutrición, hidratación y reparación profunda.",
   },
   {
-    icon: User,
+    icon: Hand,
     number: "04",
+    title: "Masajes",
+    description: "Relájate y rejuvenece con nuestros masajes terapéuticos y relajantes en un espacio completamente adecuado para tu tranquilidad. Perfectos para aliviar tensiones y mejorar tu bienestar general.",
+  },
+  {
+    icon: Circle,
+    number: "05",
+    title: "Uñas",
+    description: "Manicure y pedicure profesional con las últimas tendencias en esmaltado y decoración. Cuidamos cada detalle para que tus uñas luzcan perfectas.",
+  },
+  {
+    icon: Heart,
+    number: "06",
+    title: "Cosmetología",
+    description: "Tratamientos faciales y cuidado de la piel con productos premium. Limpieza profunda, hidratación y rejuvenecimiento para una piel radiante.",
+  },
+  {
+    icon: User,
+    number: "07",
     title: "Asesoría Personalizada",
     description: "Te escuchamos y te asesoramos para encontrar el estilo que mejor se adapta a ti. Tu satisfacción es nuestra prioridad.",
   },

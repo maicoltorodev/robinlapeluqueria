@@ -73,7 +73,7 @@ export function Navigation() {
           <div className="hidden md:block">
             <Button 
               size="lg" 
-              className="tracking-widest uppercase text-xs font-semibold"
+              className="tracking-widest uppercase text-xs font-semibold hover:scale-105 transition-transform duration-300 ease-in-out"
               onClick={() => window.open("https://wa.me/573108757670", "_blank")}
               aria-label="Reservar cita por WhatsApp"
             >
@@ -125,7 +125,7 @@ export function Navigation() {
               </Link>
               <Button 
                 size="lg" 
-                className="w-full mt-2 uppercase tracking-widest text-xs font-semibold"
+                className="w-full mt-2 uppercase tracking-widest text-xs font-semibold hover:scale-105 transition-transform duration-300 ease-in-out"
                 onClick={() => window.open("https://wa.me/573108757670", "_blank")}
                 aria-label="Reservar cita por WhatsApp"
               >

@@ -323,7 +323,7 @@ export function TestimonialsSection() {
           {/* Link to Google Reviews */}
           <div className="text-center mt-12">
             <a
-              href="https://maps.app.goo.gl/DWsnhVnz66nnKYrw6"
+              href="https://www.google.com/search?q=robin+la+peluqueria&oq=robin&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIYCAEQLhgUGIcCGIsDGKgDGLEDGIAEGO4FMgYIAhBFGEAyGAgDEC4YQxiLAxiYAxiaAxioAxiABBiKBTIPCAQQABhDGIsDGIAEGIoFMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg90gEHODc5ajFqNKgCALACAQ&sourceid=chrome&ie=UTF-8#lrd=0x8e3f9ab1440b0d35:0x64ec7624800ab4b,1,,,, "
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
