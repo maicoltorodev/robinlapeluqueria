@@ -3,7 +3,7 @@ export function StructuredData() {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
     name: "Robin La Peluquería",
-    description: "Donde la creatividad minimalista se encuentra con la innovación audaz. Experimenta el arte capilar vanguardista en un espacio contemporáneo impactante.",
+    description: "En Robin La Peluquería transformamos tu cabello en una obra de arte. Cada corte, cada color, cada estilo es creado con pasión y dedicación para que brilles con tu mejor versión.",
     url: "https://robinlapeluqueria.com",
     telephone: "+573108757670",
     address: {

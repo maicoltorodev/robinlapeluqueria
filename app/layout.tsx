@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ROBIN | La Peluquería",
   description:
-    "Donde la creatividad minimalista se encuentra con la innovación audaz. Experimenta el arte capilar vanguardista en un espacio contemporáneo impactante.",
+    "En Robin La Peluquería transformamos tu cabello en una obra de arte. Cada corte, cada color, cada estilo es creado con pasión y dedicación para que brilles con tu mejor versión.",
   generator: "Next.js",
   keywords: ["peluquería", "salón de belleza", "corte de cabello", "coloración", "tratamientos capilares", "Robin La Peluquería"],
   authors: [{ name: "Robin La Peluquería" }],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "ROBIN La Peluquería",
     title: "ROBIN | La Peluquería - Estética y Belleza",
     description:
-      "Donde la creatividad minimalista se encuentra con la innovación audaz. Experimenta el arte capilar vanguardista en un espacio contemporáneo impactante.",
+      "En Robin La Peluquería transformamos tu cabello en una obra de arte. Cada corte, cada color, cada estilo es creado con pasión y dedicación para que brilles con tu mejor versión.",
     images: [
       {
         url: "/imagenmetadata.jpg",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ROBIN | La Peluquería - Estética y Belleza",
     description:
-      "Donde la creatividad minimalista se encuentra con la innovación audaz. Experimenta el arte capilar vanguardista.",
+      "En Robin La Peluquería transformamos tu cabello en una obra de arte. Cada corte, cada color, cada estilo es creado con pasión y dedicación para que brilles con tu mejor versión.",
     images: ["/imagenmetadata.jpg"],
     creator: "@robinlapeluqueria",
   },
