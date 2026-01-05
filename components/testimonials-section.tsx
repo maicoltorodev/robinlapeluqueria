@@ -262,6 +262,8 @@ export function TestimonialsSection() {
                                 <div className="relative">
                                   {testimonial.profilePhoto ? (
                                     <div className="relative">
+                                      {/* Skeleton loader mientras carga */}
+                                      <div className="absolute inset-0 rounded-full bg-muted/30 animate-pulse" />
                                       <div className="absolute inset-0 bg-gradient-to-br from-foreground/10 to-transparent rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                       <Image
                                         src={testimonial.profilePhoto}
@@ -269,6 +271,8 @@ export function TestimonialsSection() {
                                         width={56}
                                         height={56}
                                         className="rounded-full border-2 border-border/30 group-hover:border-border/50 transition-all duration-300 relative z-10"
+                                        placeholder="blur"
+                                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//9k="
                                       />
                                     </div>
                                   ) : (

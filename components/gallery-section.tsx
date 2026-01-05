@@ -168,6 +168,8 @@ export function GallerySection() {
                       <div className="relative h-full bg-background border border-border/50 group-hover:border-foreground/30 transition-all duration-700 group-hover:shadow-2xl">
                         {/* Image Container */}
                         <div className="relative w-full flex items-center justify-center bg-foreground aspect-[3/4] min-h-[400px] lg:min-h-[500px]">
+                          {/* Skeleton loader mientras carga */}
+                          <div className="absolute inset-0 bg-muted/30 animate-pulse" />
                           <Image
                             src={image.src}
                             alt={image.alt}
@@ -175,6 +177,8 @@ export function GallerySection() {
                             loading={index < 3 ? "eager" : "lazy"}
                             className="object-contain p-6 lg:p-8 transition-all duration-700 group-hover:scale-[1.03]"
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//9k="
                           />
                           
                           {/* Elegant overlay gradient */}

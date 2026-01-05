@@ -38,6 +38,8 @@ export function AboutSection() {
             <div className="lg:col-span-8">
               <ScrollAnimation delay={200}>
                 <div className="relative h-[400px] lg:h-[500px] group cursor-pointer">
+                  {/* Skeleton loader mientras carga */}
+                  <div className="absolute inset-0 bg-muted/30 animate-pulse" />
                   <div className="absolute inset-0 border-8 border-background/30 transition-all duration-500 group-hover:border-background/50 shadow-2xl">
                     <div className="absolute inset-[8px] bg-gradient-to-br from-muted/50 to-background overflow-hidden">
                       <Image 
@@ -46,6 +48,8 @@ export function AboutSection() {
                         fill 
                         loading="eager"
                         className="object-cover opacity-90 transition-all duration-700 group-hover:opacity-100 group-hover:scale-110" 
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//9k="
                       />
                       <div className="absolute inset-0 bg-gradient-to-br from-background/20 via-transparent to-background/10 transition-opacity duration-500 group-hover:opacity-0" />
                       <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-all duration-500" />
@@ -61,6 +65,8 @@ export function AboutSection() {
                 {[2, 3, 4, 5].map((num) => (
                   <ScrollAnimation key={num} delay={(num + 1) * 100}>
                     <div className="relative h-[200px] lg:h-[240px] group cursor-pointer">
+                      {/* Skeleton loader mientras carga */}
+                      <div className="absolute inset-0 bg-muted/30 animate-pulse" />
                       <div className="absolute inset-0 border-6 border-background/30 transition-all duration-500 group-hover:border-background/50 shadow-xl">
                         <div className="absolute inset-[6px] bg-gradient-to-br from-muted/50 to-background overflow-hidden">
                           <Image 
@@ -69,6 +75,8 @@ export function AboutSection() {
                             fill
                             loading="lazy"
                             className="object-cover opacity-90 transition-all duration-700 group-hover:opacity-100 group-hover:scale-110" 
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//9k="
                           />
                           <div className="absolute inset-0 bg-gradient-to-br from-background/20 via-transparent to-background/10 transition-opacity duration-500 group-hover:opacity-0" />
                           <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-all duration-500" />

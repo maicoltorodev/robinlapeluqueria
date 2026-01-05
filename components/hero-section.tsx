@@ -143,6 +143,8 @@ export function HeroSection() {
               {/* Right Column - Visual Element */}
               <div className="lg:col-span-5 hidden lg:block relative">
                 <div ref={imageContainerRef} className="relative h-[600px] lg:h-[700px] xl:h-[800px] group cursor-pointer">
+                  {/* Skeleton loader mientras carga */}
+                  <div className="absolute inset-0 bg-muted/30 animate-pulse" />
                   {/* Black Frame */}
                   <div className="absolute inset-0 border-8 border-foreground transition-all duration-500 group-hover:border-foreground/80">
                     <div className="absolute inset-[8px] bg-gradient-to-br from-muted/50 to-background overflow-hidden">
@@ -152,6 +154,8 @@ export function HeroSection() {
                         fill
                         className="object-cover opacity-90 transition-all duration-700 group-hover:opacity-100 group-hover:scale-110"
                         priority
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//9k="
                       />
                       <div className="absolute inset-0 bg-gradient-to-br from-background/20 via-transparent to-background/10 transition-opacity duration-500 group-hover:opacity-0" />
                       {/* Overlay effect on hover */}
