@@ -174,7 +174,7 @@ export function HeroSection() {
         <div className="absolute bottom-12 left-8 z-20 hidden lg:flex flex-col items-center gap-4">
           <div className="w-px h-24 bg-border animate-pulse" />
           <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground -rotate-90 origin-left translate-y-8 whitespace-nowrap">
-            Deslizar
+            Profesionalismo
           </span>
         </div>
       </section>

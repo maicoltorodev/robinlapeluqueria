@@ -4,7 +4,7 @@ export function StructuredData() {
     "@type": "BeautySalon",
     name: "Robin La Peluquería",
     description: "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",
-    url: "https://robinlapeluqueria.com",
+    url: "https://robinlapeluqueria.vercel.app",
     telephone: "+573108757670",
     address: {
       "@type": "PostalAddress",
@@ -21,7 +21,7 @@ export function StructuredData() {
       },
     ],
     priceRange: "$$",
-    image: "https://robinlapeluqueria.com/imagenmetadata.jpg",
+    image: "https://robinlapeluqueria.vercel.app/imagenmetadata.jpg",
     sameAs: [
       "https://www.instagram.com/robinlapeluqueria/",
       "https://web.facebook.com/robinlapeluqueria",

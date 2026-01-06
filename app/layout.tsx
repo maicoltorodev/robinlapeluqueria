@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://robinlapeluqueria.com"),
+  metadataBase: new URL("https://robinlapeluqueria.vercel.app"),
   title: "ROBIN | La Peluquería",
   description:
     "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",
@@ -29,17 +29,19 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://robinlapeluqueria.com",
+    url: "https://robinlapeluqueria.vercel.app",
     siteName: "ROBIN La Peluquería",
     title: "ROBIN | La Peluquería - Estética y Belleza",
     description:
       "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",
     images: [
       {
-        url: "/imagenmetadata.jpg",
+        url: "https://robinlapeluqueria.vercel.app/imagenmetadata.jpg",
         width: 1200,
         height: 630,
         alt: "ROBIN La Peluquería - Estética y Belleza",
+        type: "image/jpeg",
+        secureUrl: "https://robinlapeluqueria.vercel.app/imagenmetadata.jpg",
       },
     ],
   },
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
     title: "ROBIN | La Peluquería - Estética y Belleza",
     description:
       "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",
-    images: ["/imagenmetadata.jpg"],
+    images: ["https://robinlapeluqueria.vercel.app/imagenmetadata.jpg"],
     creator: "@robinlapeluqueria",
   },
   icons: {
@@ -78,6 +80,12 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  other: {
+    "theme-color": "#000000",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
+    "format-detection": "telephone=yes",
   },
 }
 

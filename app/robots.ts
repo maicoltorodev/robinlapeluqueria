@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'],
     },
-    sitemap: 'https://robinlapeluqueria.com/sitemap.xml',
+    sitemap: 'https://robinlapeluqueria.vercel.app/sitemap.xml',
   }
 }
 
