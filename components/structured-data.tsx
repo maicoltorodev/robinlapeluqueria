@@ -3,7 +3,7 @@ export function StructuredData() {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
     name: "Robin La Peluquería",
-    description: "En Robin La Peluquería transformamos tu cabello en una obra de arte. Cada corte, cada color, cada estilo es creado con pasión y dedicación para que brilles con tu mejor versión.",
+    description: "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",
     url: "https://robinlapeluqueria.com",
     telephone: "+573108757670",
     address: {
