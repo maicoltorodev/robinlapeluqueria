@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import Image from "next/image"
 import useEmblaCarousel from "embla-carousel-react"
 import { CarouselNavButton } from "@/components/ui/carousel-nav-button"
@@ -22,9 +22,39 @@ export function GallerySection() {
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
   const autoplayRef = useRef<NodeJS.Timeout | undefined>(undefined)
+  const restartTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined)
+  const stopAutoplayRef = useRef<(() => void) | undefined>(undefined)
+  const restartAutoplayRef = useRef<(() => void) | undefined>(undefined)
 
   useEffect(() => {
     if (!emblaApi) return
+    
+    const startAutoplay = () => {
+      if (autoplayRef.current) clearInterval(autoplayRef.current)
+      autoplayRef.current = setInterval(() => emblaApi.scrollNext(), 4000)
+    }
+
+    const stopAutoplay = () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current)
+        autoplayRef.current = undefined
+      }
+      if (restartTimeoutRef.current) {
+        clearTimeout(restartTimeoutRef.current)
+        restartTimeoutRef.current = undefined
+      }
+    }
+
+    const restartAutoplay = () => {
+      stopAutoplay()
+      restartTimeoutRef.current = setTimeout(() => {
+        startAutoplay()
+      }, 4000)
+    }
+
+    // Guardar referencias para usar en los botones
+    stopAutoplayRef.current = stopAutoplay
+    restartAutoplayRef.current = restartAutoplay
     
     const updateButtons = () => {
       setPrevBtnDisabled(!emblaApi.canScrollPrev())
@@ -34,11 +64,18 @@ export function GallerySection() {
     updateButtons()
     emblaApi.on("select", updateButtons)
     
-    autoplayRef.current = setInterval(() => emblaApi.scrollNext(), 4000)
+    startAutoplay()
+    
+    // Pausar autoplay cuando el usuario arrastra
+    emblaApi.on("pointerDown", stopAutoplay)
+    emblaApi.on("pointerUp", restartAutoplay)
     
     return () => {
       emblaApi.off("select", updateButtons)
-      if (autoplayRef.current) clearInterval(autoplayRef.current)
+      emblaApi.off("pointerDown", stopAutoplay)
+      emblaApi.off("pointerUp", restartAutoplay)
+      stopAutoplay()
+      if (restartTimeoutRef.current) clearTimeout(restartTimeoutRef.current)
     }
   }, [emblaApi])
 
@@ -88,13 +125,21 @@ export function GallerySection() {
 
             <CarouselNavButton
               direction="prev"
-              onClick={() => emblaApi?.scrollPrev()}
+              onClick={() => {
+                stopAutoplayRef.current?.()
+                emblaApi?.scrollPrev()
+                restartAutoplayRef.current?.()
+              }}
               disabled={prevBtnDisabled}
               ariaLabel="Imagen anterior"
             />
             <CarouselNavButton
               direction="next"
-              onClick={() => emblaApi?.scrollNext()}
+              onClick={() => {
+                stopAutoplayRef.current?.()
+                emblaApi?.scrollNext()
+                restartAutoplayRef.current?.()
+              }}
               disabled={nextBtnDisabled}
               ariaLabel="Siguiente imagen"
             />
