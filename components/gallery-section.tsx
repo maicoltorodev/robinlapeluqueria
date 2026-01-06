@@ -17,114 +17,44 @@ const galleryImages = [
   { src: "/castaña2.png", alt: "Trabajo de peluquería - Coloración 2" },
 ]
 
-const AUTOPLAY_DELAY = 3000
-const AUTOPLAY_DELAY_MOBILE = 5000 // Slower on mobile
-
 export function GallerySection() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true,
-    align: "start",
-    slidesToScroll: 1,
-  })
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" })
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
-  const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null)
-  const isAutoplayRef = useRef(false)
+  const autoplayRef = useRef<NodeJS.Timeout>()
+
+  const updateButtons = useCallback(() => {
+    if (!emblaApi) return
+    setPrevBtnDisabled(!emblaApi.canScrollPrev())
+    setNextBtnDisabled(!emblaApi.canScrollNext())
+  }, [emblaApi])
 
   const startAutoplay = useCallback(() => {
     if (!emblaApi) return
-    
-    // Limpiar intervalo existente
-    if (autoplayIntervalRef.current) {
-      clearInterval(autoplayIntervalRef.current)
-    }
-    
-    // Detectar si es mobile
-    const isMobile = window.innerWidth < 640
-    const delay = isMobile ? AUTOPLAY_DELAY_MOBILE : AUTOPLAY_DELAY
-    
-    // Iniciar nuevo intervalo
-    autoplayIntervalRef.current = setInterval(() => {
-      isAutoplayRef.current = true
-      emblaApi.scrollNext()
-      // Resetear flag después de un pequeño delay para permitir que el evento se procese
-      setTimeout(() => {
-        isAutoplayRef.current = false
-      }, 100)
-    }, delay)
+    if (autoplayRef.current) clearInterval(autoplayRef.current)
+    autoplayRef.current = setInterval(() => emblaApi.scrollNext(), 4000)
   }, [emblaApi])
 
   const stopAutoplay = useCallback(() => {
-    if (autoplayIntervalRef.current) {
-      clearInterval(autoplayIntervalRef.current)
-      autoplayIntervalRef.current = null
-    }
+    if (autoplayRef.current) clearInterval(autoplayRef.current)
   }, [])
-
-  const handleScroll = useCallback((direction: "prev" | "next") => {
-    if (!emblaApi) return
-    stopAutoplay()
-    direction === "prev" ? emblaApi.scrollPrev() : emblaApi.scrollNext()
-    startAutoplay()
-  }, [emblaApi, stopAutoplay, startAutoplay])
-
-  const scrollPrev = useCallback(() => handleScroll("prev"), [handleScroll])
-  const scrollNext = useCallback(() => handleScroll("next"), [handleScroll])
 
   useEffect(() => {
     if (!emblaApi) return
-
-    const updateButtons = () => {
-      setPrevBtnDisabled(!emblaApi.canScrollPrev())
-      setNextBtnDisabled(!emblaApi.canScrollNext())
-    }
-
     updateButtons()
     emblaApi.on("select", updateButtons)
-    emblaApi.on("reInit", updateButtons)
-
-    // Detectar cuando el usuario arrastra manualmente
-    const handlePointerDown = () => {
-      if (!isAutoplayRef.current) stopAutoplay()
-    }
-
-    const handlePointerUp = () => {
-      if (!isAutoplayRef.current) startAutoplay()
-    }
-
-    // Escuchar eventos de interacción manual
-    emblaApi.on("pointerDown", handlePointerDown)
-    emblaApi.on("pointerUp", handlePointerUp)
-
-    // Esperar a que Embla esté completamente inicializado
-    const initializeCarousel = () => {
-      // Usar requestAnimationFrame para asegurar que el DOM esté listo
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          if (!emblaApi) return
-          
-          // Iniciar desde índice aleatorio con animación suave
-          const randomIndex = Math.floor(Math.random() * galleryImages.length)
-          emblaApi.scrollTo(randomIndex, true) // true = con animación
-          
-          // Iniciar autoplay después de que termine la animación del scroll
-          setTimeout(() => {
-            startAutoplay()
-          }, 600) // Tiempo suficiente para que termine la animación
-        }, 150)
-      })
-    }
-
-    initializeCarousel()
-
+    
+    startAutoplay()
+    emblaApi.on("pointerDown", stopAutoplay)
+    emblaApi.on("pointerUp", startAutoplay)
+    
     return () => {
       emblaApi.off("select", updateButtons)
-      emblaApi.off("reInit", updateButtons)
-      emblaApi.off("pointerDown", handlePointerDown)
-      emblaApi.off("pointerUp", handlePointerUp)
+      emblaApi.off("pointerDown", stopAutoplay)
+      emblaApi.off("pointerUp", startAutoplay)
       stopAutoplay()
     }
-  }, [emblaApi, startAutoplay, stopAutoplay])
+  }, [emblaApi, updateButtons, startAutoplay, stopAutoplay])
 
   return (
     <section id="gallery" className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-background relative overflow-hidden">
@@ -149,11 +79,11 @@ export function GallerySection() {
           {/* Carousel */}
           <div className="relative">
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex gap-6">
+              <div className="flex pr-6">
                 {galleryImages.map((image, index) => (
                   <div
                     key={index}
-                    className="flex-[0_0_100%] md:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(33.333%-16px)] min-w-0"
+                    className="flex-[0_0_100%] md:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(33.333%-16px)] min-w-0 mr-6"
                   >
                     <div className="group relative">
                       <div className="relative h-full bg-background border border-foreground group-hover:shadow-2xl">
@@ -179,13 +109,21 @@ export function GallerySection() {
             {/* Navigation Buttons */}
             <CarouselNavButton
               direction="prev"
-              onClick={scrollPrev}
+              onClick={() => {
+                stopAutoplay()
+                emblaApi?.scrollPrev()
+                setTimeout(startAutoplay, 4000)
+              }}
               disabled={prevBtnDisabled}
               ariaLabel="Imagen anterior"
             />
             <CarouselNavButton
               direction="next"
-              onClick={scrollNext}
+              onClick={() => {
+                stopAutoplay()
+                emblaApi?.scrollNext()
+                setTimeout(startAutoplay, 4000)
+              }}
               disabled={nextBtnDisabled}
               ariaLabel="Siguiente imagen"
             />
