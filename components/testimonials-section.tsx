@@ -1,10 +1,12 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
+import { Star, Quote } from "lucide-react"
 import { ScrollAnimation } from "@/components/scroll-animation"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
+import { CarouselNavButton } from "@/components/ui/carousel-nav-button"
+import { GOOGLE_REVIEWS_URL } from "@/lib/constants"
 
 interface Review {
   id: number | string
@@ -150,12 +152,12 @@ export function TestimonialsSection() {
   }
 
   return (
-    <section className="py-24 md:py-32 lg:py-40 bg-muted/30 relative overflow-hidden">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-muted/30 relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-[1600px] mx-auto">
           
           {/* Header */}
-          <div className="mb-16 lg:mb-20 text-center">
+          <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
             <ScrollAnimation>
               <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-semibold mb-6">Testimonios</p>
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter leading-[0.9] max-w-4xl mx-auto mb-6">
@@ -204,7 +206,7 @@ export function TestimonialsSection() {
                       <ScrollAnimation>
                         <div className="group relative h-full">
                           {/* Card Container - Estilo premium similar a quote-section */}
-                          <div className="relative bg-background/5 backdrop-blur-sm border border-border/20 rounded-lg md:rounded-xl p-8 lg:p-10 h-full flex flex-col shadow-2xl hover:shadow-[0_0_40px_rgba(0,0,0,0.1)] transition-all duration-500">
+                          <div className="relative bg-background/5 backdrop-blur-sm border border-border/20 rounded-lg md:rounded-xl p-6 sm:p-8 lg:p-10 h-full flex flex-col shadow-2xl hover:shadow-[0_0_40px_rgba(0,0,0,0.1)] transition-all duration-500">
                             {/* Subtle gradient overlay */}
                             <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 via-transparent to-foreground/2 rounded-lg md:rounded-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             
@@ -305,29 +307,25 @@ export function TestimonialsSection() {
               </div>
 
               {/* Navigation Buttons */}
-              <button
+              <CarouselNavButton
+                direction="prev"
                 onClick={scrollPrev}
                 disabled={prevBtnDisabled}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-8 w-14 h-14 rounded-full bg-background/95 backdrop-blur-sm border-2 border-border/70 shadow-xl flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground hover:scale-110 active:scale-95 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-background disabled:hover:text-foreground z-10 group"
-                aria-label="Reseña anterior"
-              >
-                <ChevronLeft className="w-6 h-6 group-hover:translate-x-[-2px] transition-transform duration-300" />
-              </button>
-              <button
+                ariaLabel="Reseña anterior"
+              />
+              <CarouselNavButton
+                direction="next"
                 onClick={scrollNext}
                 disabled={nextBtnDisabled}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-8 w-14 h-14 rounded-full bg-background/95 backdrop-blur-sm border-2 border-border/70 shadow-xl flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground hover:scale-110 active:scale-95 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-background disabled:hover:text-foreground z-10 group"
-                aria-label="Siguiente reseña"
-              >
-                <ChevronRight className="w-6 h-6 group-hover:translate-x-[2px] transition-transform duration-300" />
-              </button>
+                ariaLabel="Siguiente reseña"
+              />
             </div>
           )}
 
           {/* Link to Google Reviews */}
           <div className="text-center mt-12">
             <a
-              href="https://www.google.com/search?q=robin+la+peluqueria&oq=robin&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIYCAEQLhgUGIcCGIsDGKgDGLEDGIAEGO4FMgYIAhBFGEAyGAgDEC4YQxiLAxiYAxiaAxioAxiABBiKBTIPCAQQABhDGIsDGIAEGIoFMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg90gEHODc5ajFqNKgCALACAQ&sourceid=chrome&ie=UTF-8#lrd=0x8e3f9ab1440b0d35:0x64ec7624800ab4b,1,,,, "
+              href={GOOGLE_REVIEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"

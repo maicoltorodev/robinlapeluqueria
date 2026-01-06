@@ -1,17 +1,18 @@
 "use client"
 
-import Image from "next/image"
 import { MapPin } from "lucide-react"
 import { ScrollAnimation } from "@/components/scroll-animation"
+import { GOOGLE_MAPS_URL } from "@/lib/constants"
+import { FramedImage } from "@/components/ui/framed-image"
 
 export function LocationSection() {
   return (
-    <section id="location" className="py-24 md:py-32 lg:py-40 bg-background relative overflow-hidden">
+    <section id="location" className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-[1600px] mx-auto">
           
           {/* Header */}
-          <div className="mb-16 lg:mb-20 text-center">
+          <div className="mb-12 sm:mb-16 lg:mb-20 text-center">
             <ScrollAnimation>
               <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-semibold mb-6">Ubicación</p>
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter leading-[0.9] max-w-4xl mx-auto">
@@ -27,18 +28,18 @@ export function LocationSection() {
           </div>
 
           {/* Location Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             
             {/* Left Column - Address Info */}
             <ScrollAnimation delay={200}>
-              <div className="space-y-8">
-                <div className="flex items-start gap-6">
-                  <div className="w-16 h-16 rounded-full bg-foreground text-background flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-8 h-8" />
+              <div className="space-y-6 sm:space-y-8">
+                <div className="flex items-start gap-4 sm:gap-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-foreground text-background flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 sm:w-8 sm:h-8" />
                   </div>
-                  <div className="space-y-4">
-                    <h3 className="text-2xl md:text-3xl font-bold">Dirección</h3>
-                    <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold">Dirección</h3>
+                    <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
                       Cl. 118 #15-45
                       <br />
                       Bogotá, Colombia
@@ -47,25 +48,13 @@ export function LocationSection() {
                 </div>
 
                 {/* Facade Image */}
-                <div className="relative h-[300px] lg:h-[400px] group cursor-pointer">
-                  {/* Skeleton loader mientras carga */}
-                  <div className="absolute inset-0 bg-muted/30 animate-pulse" />
-                  <div className="absolute inset-0 border-8 border-foreground transition-all duration-500 group-hover:border-foreground/80">
-                    <div className="absolute inset-[8px] bg-gradient-to-br from-muted/50 to-background overflow-hidden">
-                      <Image 
-                        src="/fachada.png" 
-                        alt="Robin La Peluquería - Fachada" 
-                        fill 
-                        loading="lazy"
-                        className="object-cover opacity-90 transition-all duration-700 group-hover:opacity-100 group-hover:scale-110" 
-                        placeholder="blur"
-                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//9k="
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-background/20 via-transparent to-background/10 transition-opacity duration-500 group-hover:opacity-0" />
-                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-all duration-500" />
-                    </div>
-                  </div>
-                </div>
+                <FramedImage
+                  src="/fachada.png"
+                  alt="Robin La Peluquería - Fachada"
+                  borderSize={8}
+                  borderColor="foreground"
+                  height="h-[300px] lg:h-[400px]"
+                />
 
                 <div className="pt-8 border-t border-border">
                   <h4 className="text-sm tracking-[0.2em] uppercase text-muted-foreground font-semibold mb-4">Cómo Llegar</h4>
@@ -77,7 +66,7 @@ export function LocationSection() {
 
                 <div className="pt-8 border-t border-border">
                   <a
-                    href="https://maps.app.goo.gl/DWsnhVnz66nnKYrw6"
+                    href={GOOGLE_MAPS_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-foreground hover:text-muted-foreground transition-colors font-medium"

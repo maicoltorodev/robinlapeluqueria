@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://robinlapeluqueria.com"),
   title: "ROBIN | La Peluquería",
   description:
     "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",

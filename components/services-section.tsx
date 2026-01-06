@@ -50,7 +50,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section id="services" className="py-24 md:py-32 lg:py-40 bg-background relative overflow-hidden">
+    <section id="services" className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-background relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-muted/30" />
       
@@ -89,22 +89,22 @@ export function ServicesSection() {
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 p-10 lg:p-14 space-y-8">
+                <div className="relative z-10 p-6 sm:p-8 md:p-10 lg:p-14 space-y-6 sm:space-y-8">
                   <div className="flex items-start gap-6">
                     {/* Icon Circle - Premium style */}
                     <div className="relative flex-shrink-0">
-                      <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-foreground text-background flex items-center justify-center group-hover:scale-110 group-hover:shadow-lg transition-all duration-500">
-                        <service.icon className="w-7 h-7 lg:w-8 lg:h-8" />
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-foreground text-background flex items-center justify-center group-hover:scale-110 group-hover:shadow-lg transition-all duration-500">
+                        <service.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
                       </div>
                       {/* Subtle glow effect */}
                       <div className="absolute inset-0 rounded-full bg-foreground/20 blur-xl group-hover:bg-foreground/30 transition-all duration-500 -z-10" />
                     </div>
                     
                     <div className="flex-1 pt-1">
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-4 group-hover:text-foreground transition-colors duration-300">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-3 sm:mb-4 group-hover:text-foreground transition-colors duration-300">
                         {service.title}
                       </h3>
-                      <p className="text-muted-foreground/80 leading-relaxed text-base md:text-lg lg:text-xl font-light">
+                      <p className="text-muted-foreground/80 leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl font-light">
                     {service.description}
                   </p>
                     </div>

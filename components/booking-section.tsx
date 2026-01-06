@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Clock } from "lucide-react"
 import { ScrollAnimation } from "@/components/scroll-animation"
+import { WHATSAPP_URL } from "@/lib/constants"
 
 export function BookingSection() {
   return (
-    <section id="contact" className="py-24 md:py-32 lg:py-40 bg-foreground text-background relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-foreground text-background relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
@@ -17,9 +18,9 @@ export function BookingSection() {
             {/* Left Column - CTA */}
             <div className="lg:col-span-7 space-y-10">
             <ScrollAnimation>
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
                 <p className="text-xs tracking-[0.3em] uppercase text-background/60 font-semibold">Contáctanos</p>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter leading-[0.9]">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tighter leading-[0.9]">
                   <span className="inline-block text-background animate-slide-in-left animate-float-text" style={{ animationDelay: "0.1s" }}>
                     Comienza Tu
                   </span>
@@ -41,8 +42,8 @@ export function BookingSection() {
 
             <Button
               size="lg"
-              className="bg-background text-foreground hover:bg-background/90 text-xs tracking-[0.2em] uppercase font-semibold px-10 py-7 mt-6"
-              onClick={() => window.open("https://wa.me/573108757670", "_blank")}
+              className="bg-background text-foreground hover:bg-background/90 text-xs tracking-[0.2em] uppercase font-semibold px-8 sm:px-10 py-6 sm:py-7 mt-6 w-full sm:w-auto touch-manipulation"
+              onClick={() => window.open(WHATSAPP_URL, "_blank")}
             >
               Reservar Cita
             </Button>
@@ -53,7 +54,7 @@ export function BookingSection() {
             {/* Right Column - Contact Info */}
             <div className="lg:col-span-5">
               <ScrollAnimation delay={200}>
-              <div className="space-y-8 bg-background/5 p-8 lg:p-12 border border-background/10">
+              <div className="space-y-6 sm:space-y-8 bg-background/5 p-6 sm:p-8 lg:p-12 border border-background/10">
             <div className="space-y-6">
               <div className="flex items-start gap-4 pb-6 border-b border-background/20">
                     <div className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center flex-shrink-0">

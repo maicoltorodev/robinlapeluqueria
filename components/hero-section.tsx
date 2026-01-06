@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { useState, useEffect, useRef } from "react"
+import { WHATSAPP_URL } from "@/lib/constants"
 
 export function HeroSection() {
   const [logoPosition, setLogoPosition] = useState({ left: 0, top: 0 })
@@ -78,23 +79,23 @@ export function HeroSection() {
   }, [logoVisible])
 
   const handleFloatingClick = () => {
-    window.open("https://wa.me/573108757670", "_blank")
+    window.open(WHATSAPP_URL, "_blank")
   }
 
   return (
     <>
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      <section ref={heroRef} className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-background">
         {/* Grid Background Pattern */}
         <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
         {/* Main Content */}
-        <div className="relative z-20 container mx-auto px-4 lg:px-8 py-20">
+        <div className="relative z-20 container mx-auto px-4 lg:px-8 py-12 sm:py-16 md:py-20">
           <div className="max-w-[1600px] mx-auto">
             {/* Hero Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[80vh]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center min-h-[70vh] sm:min-h-[80vh]">
               
               {/* Left Column - Title & Description */}
-              <div className="lg:col-span-7 space-y-10">
+              <div className="lg:col-span-7 space-y-6 sm:space-y-8 md:space-y-10">
                 {/* Title */}
                 <div className="space-y-6">
                   <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter leading-[0.9]">
@@ -109,19 +110,19 @@ export function HeroSection() {
                 </div>
 
                 {/* Description & CTA */}
-                <div className="space-y-8 max-w-2xl">
-                  <div className="space-y-5">
+                <div className="space-y-6 sm:space-y-8 max-w-2xl">
+                  <div className="space-y-4 sm:space-y-5">
                     <div className="h-px w-20 bg-foreground" />
-                    <p className="text-lg md:text-xl lg:text-2xl tracking-wide leading-relaxed text-foreground/70 font-normal">
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl tracking-wide leading-relaxed text-foreground/70 font-normal">
                       En Robin La Peluquería transformamos tu cabello en una obra de arte. Cada corte, cada color, cada estilo es creado con pasión y dedicación para que brilles con tu mejor versión.
                     </p>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
                   <Button
                     size="lg"
-                    className="text-xs tracking-[0.2em] uppercase font-semibold px-10 py-7 group w-full sm:w-auto"
-                    onClick={() => window.open("https://wa.me/1234567890", "_blank")}
+                    className="text-xs tracking-[0.2em] uppercase font-semibold px-8 sm:px-10 py-6 sm:py-7 group w-full sm:w-auto touch-manipulation"
+                    onClick={() => window.open(WHATSAPP_URL, "_blank")}
                   >
                     Reservar Cita
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -129,7 +130,7 @@ export function HeroSection() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="text-xs tracking-[0.2em] uppercase font-semibold px-10 py-7 w-full sm:w-auto"
+                      className="text-xs tracking-[0.2em] uppercase font-semibold px-8 sm:px-10 py-6 sm:py-7 w-full sm:w-auto touch-manipulation"
                       onClick={() => {
                         window.location.href = "/#gallery"
                       }}
@@ -182,7 +183,7 @@ export function HeroSection() {
       <button
         ref={logoRef}
         onClick={handleFloatingClick}
-        className="fixed z-50 bg-background rounded-full shadow-2xl animate-logo-rotate-float cursor-pointer hover:scale-110"
+        className="fixed z-50 bg-background rounded-full shadow-2xl animate-logo-rotate-float cursor-pointer hover:scale-110 active:scale-95 touch-manipulation hidden sm:block"
         style={{
           left: `${logoPosition.left - 6}px`,
           top: `${logoPosition.top - 6}px`,

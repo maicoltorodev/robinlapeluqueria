@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server"
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 3600 // Revalidar cada hora
+
 export async function GET() {
   const PLACE_ID = process.env.GOOGLE_PLACE_ID || "ChIJNQ0LRLGaP44RS6sASGLHTgY"
   const GOOGLE_API_KEY = process.env.GOOGLE_PLACES_API_KEY
@@ -52,11 +55,18 @@ export async function GET() {
         profilePhoto: review.profile_photo_url || null,
       }))
 
-    return NextResponse.json({
-      reviews: filteredReviews,
-      rating: data.result.rating,
-      totalRatings: data.result.user_ratings_total,
-    })
+    return NextResponse.json(
+      {
+        reviews: filteredReviews,
+        rating: data.result.rating,
+        totalRatings: data.result.user_ratings_total,
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        },
+      }
+    )
   } catch (error) {
     return NextResponse.json(
       { 

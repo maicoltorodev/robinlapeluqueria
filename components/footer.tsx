@@ -1,13 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Instagram, Facebook, MessageCircle } from "lucide-react"
+import { WHATSAPP_URL } from "@/lib/constants"
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t border-border py-16">
+    <footer className="bg-background border-t border-border py-12 sm:py-16">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-12 mb-8 sm:mb-12">
           {/* Logo & Description */}
           <div className="md:col-span-5 space-y-6">
             <Image
@@ -79,7 +80,7 @@ export function Footer() {
                 href="https://www.instagram.com/robinlapeluqueria/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border border-border flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+                className="w-12 h-12 sm:w-10 sm:h-10 border border-border flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm touch-manipulation"
                 aria-label="Síguenos en Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -88,16 +89,16 @@ export function Footer() {
                 href="https://web.facebook.com/robinlapeluqueria"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border border-border flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+                className="w-12 h-12 sm:w-10 sm:h-10 border border-border flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm touch-manipulation"
                 aria-label="Síguenos en Facebook"
               >
                 <Facebook className="w-4 h-4" />
               </Link>
               <Link
-                href="https://wa.me/573108757670"
+                href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 border border-border flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+                className="w-12 h-12 sm:w-10 sm:h-10 border border-border flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm touch-manipulation"
                 aria-label="Contáctanos por WhatsApp"
               >
                 <MessageCircle className="w-4 h-4" />
