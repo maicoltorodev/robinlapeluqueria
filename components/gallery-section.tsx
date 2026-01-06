@@ -21,7 +21,7 @@ export function GallerySection() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" })
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
-  const autoplayRef = useRef<NodeJS.Timeout>()
+  const autoplayRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
   const updateButtons = useCallback(() => {
     if (!emblaApi) return
