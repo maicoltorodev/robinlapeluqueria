@@ -79,11 +79,11 @@ export function GallerySection() {
           {/* Carousel */}
           <div className="relative">
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex pr-6">
+              <div className="flex pr-8">
                 {galleryImages.map((image, index) => (
                   <div
                     key={index}
-                    className="flex-[0_0_100%] md:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(33.333%-16px)] min-w-0 mr-6"
+                    className="flex-[0_0_100%] md:flex-[0_0_calc(50%-16px)] lg:flex-[0_0_calc(33.333%-21.33px)] min-w-0 mr-8"
                   >
                     <div className="group relative">
                       <div className="relative h-full bg-background border border-foreground group-hover:shadow-2xl">
