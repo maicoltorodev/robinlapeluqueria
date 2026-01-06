@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import useEmblaCarousel from "embla-carousel-react"
 import { CarouselNavButton } from "@/components/ui/carousel-nav-button"
@@ -18,43 +18,29 @@ const galleryImages = [
 ]
 
 export function GallerySection() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" })
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" })
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
   const autoplayRef = useRef<NodeJS.Timeout | undefined>(undefined)
 
-  const updateButtons = useCallback(() => {
-    if (!emblaApi) return
-    setPrevBtnDisabled(!emblaApi.canScrollPrev())
-    setNextBtnDisabled(!emblaApi.canScrollNext())
-  }, [emblaApi])
-
-  const startAutoplay = useCallback(() => {
-    if (!emblaApi) return
-    if (autoplayRef.current) clearInterval(autoplayRef.current)
-    autoplayRef.current = setInterval(() => emblaApi.scrollNext(), 4000)
-  }, [emblaApi])
-
-  const stopAutoplay = useCallback(() => {
-    if (autoplayRef.current) clearInterval(autoplayRef.current)
-  }, [])
-
   useEffect(() => {
     if (!emblaApi) return
+    
+    const updateButtons = () => {
+      setPrevBtnDisabled(!emblaApi.canScrollPrev())
+      setNextBtnDisabled(!emblaApi.canScrollNext())
+    }
+    
     updateButtons()
     emblaApi.on("select", updateButtons)
     
-    startAutoplay()
-    emblaApi.on("pointerDown", stopAutoplay)
-    emblaApi.on("pointerUp", startAutoplay)
+    autoplayRef.current = setInterval(() => emblaApi.scrollNext(), 4000)
     
     return () => {
       emblaApi.off("select", updateButtons)
-      emblaApi.off("pointerDown", stopAutoplay)
-      emblaApi.off("pointerUp", startAutoplay)
-      stopAutoplay()
+      if (autoplayRef.current) clearInterval(autoplayRef.current)
     }
-  }, [emblaApi, updateButtons, startAutoplay, stopAutoplay])
+  }, [emblaApi])
 
   return (
     <section id="gallery" className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-background relative overflow-hidden">
@@ -79,51 +65,36 @@ export function GallerySection() {
           {/* Carousel */}
           <div className="relative">
             <div className="overflow-hidden" ref={emblaRef}>
-              <div className="flex pr-8">
+              <div className="flex pr-6">
                 {galleryImages.map((image, index) => (
                   <div
                     key={index}
-                    className="flex-[0_0_100%] md:flex-[0_0_calc(50%-16px)] lg:flex-[0_0_calc(33.333%-21.33px)] min-w-0 mr-8"
+                    className="flex-[0_0_100%] md:flex-[0_0_calc(50%-12px)] lg:flex-[0_0_calc(33.333%-16px)] min-w-0 mr-6"
                   >
-                    <div className="group relative">
-                      <div className="relative h-full bg-background border border-foreground group-hover:shadow-2xl">
-                        <div className="relative w-full aspect-[3/4] min-h-[400px] lg:min-h-[500px] bg-black flex items-center justify-center">
-                          <Image
-                            src={image.src}
-                            alt={image.alt}
-                            fill
-                            loading={index < 3 ? "eager" : "lazy"}
-                            className="object-contain p-6 lg:p-8 group-hover:scale-[1.03] transition-transform duration-300"
-                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            placeholder="blur"
-                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQADAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//9k="
-                          />
-                        </div>
-                      </div>
+                    <div className="relative aspect-[3/4] min-h-[400px] lg:min-h-[500px] bg-black border border-foreground">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        loading={index < 3 ? "eager" : "lazy"}
+                        className="object-contain p-6 lg:p-8"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Navigation Buttons */}
             <CarouselNavButton
               direction="prev"
-              onClick={() => {
-                stopAutoplay()
-                emblaApi?.scrollPrev()
-                setTimeout(startAutoplay, 4000)
-              }}
+              onClick={() => emblaApi?.scrollPrev()}
               disabled={prevBtnDisabled}
               ariaLabel="Imagen anterior"
             />
             <CarouselNavButton
               direction="next"
-              onClick={() => {
-                stopAutoplay()
-                emblaApi?.scrollNext()
-                setTimeout(startAutoplay, 4000)
-              }}
+              onClick={() => emblaApi?.scrollNext()}
               disabled={nextBtnDisabled}
               ariaLabel="Siguiente imagen"
             />
