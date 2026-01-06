@@ -4,7 +4,7 @@ import { TerminosSection } from "@/components/terminos-section"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Términos y Condiciones | ROBIN La Peluquería",
+  title: "Términos y Condiciones | robin La Peluquería",
   description: "Términos y condiciones de uso de los servicios de Robin La Peluquería.",
 }
 

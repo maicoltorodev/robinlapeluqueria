@@ -18,9 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://robinlapeluqueria.vercel.app"),
-  title: "ROBIN | La Peluquería",
-  description:
-    "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",
+  title: "robin | La Peluquería",
+  description: "Donde el estilo encuentra la elegancia",
   generator: "Next.js",
   keywords: ["peluquería", "salón de belleza", "corte de cabello", "coloración", "tratamientos capilares", "Robin La Peluquería"],
   authors: [{ name: "Robin La Peluquería" }],
@@ -30,16 +29,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_ES",
     url: "https://robinlapeluqueria.vercel.app",
-    siteName: "ROBIN La Peluquería",
-    title: "ROBIN | La Peluquería - Estética y Belleza",
-    description:
-      "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",
+    siteName: "robin La Peluquería",
+    title: "robin | La Peluquería - Estética y Belleza",
+    description: "Donde el estilo encuentra la elegancia",
     images: [
       {
         url: "https://robinlapeluqueria.vercel.app/imagenmetadata.jpg",
         width: 1200,
         height: 630,
-        alt: "ROBIN La Peluquería - Estética y Belleza",
+        alt: "robin La Peluquería - Estética y Belleza",
         type: "image/jpeg",
         secureUrl: "https://robinlapeluqueria.vercel.app/imagenmetadata.jpg",
       },
@@ -47,9 +45,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ROBIN | La Peluquería - Estética y Belleza",
-    description:
-      "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",
+    title: "robin | La Peluquería - Estética y Belleza",
+    description: "Donde el estilo encuentra la elegancia",
     images: ["https://robinlapeluqueria.vercel.app/imagenmetadata.jpg"],
     creator: "@robinlapeluqueria",
   },

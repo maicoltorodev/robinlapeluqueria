@@ -4,7 +4,7 @@ import { PrivacidadSection } from "@/components/privacidad-section"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Política de Privacidad | ROBIN La Peluquería",
+  title: "Política de Privacidad | robin La Peluquería",
   description: "Política de privacidad de Robin La Peluquería. Conoce cómo protegemos y utilizamos tu información personal.",
 }
 

@@ -4,7 +4,7 @@ import { CookiesSection } from "@/components/cookies-section"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Política de Cookies | ROBIN La Peluquería",
+  title: "Política de Cookies | robin La Peluquería",
   description: "Política de cookies de Robin La Peluquería. Información sobre el uso de cookies en nuestro sitio web.",
 }
 

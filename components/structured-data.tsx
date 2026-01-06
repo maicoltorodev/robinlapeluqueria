@@ -3,7 +3,7 @@ export function StructuredData() {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
     name: "Robin La Peluquería",
-    description: "Donde el estilo encuentra la elegancia. Cada detalle cuenta, cada momento es único",
+    description: "Donde el estilo encuentra la elegancia",
     url: "https://robinlapeluqueria.vercel.app",
     telephone: "+573108757670",
     address: {
