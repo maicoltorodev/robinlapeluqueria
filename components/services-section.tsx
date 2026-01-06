@@ -77,11 +77,8 @@ export function ServicesSection() {
             <div
                 className="group relative bg-background border border-border/50 hover:border-foreground/30 transition-all duration-700 ease-out overflow-hidden"
             >
-                {/* Premium gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-foreground/0 via-foreground/0 to-foreground/0 group-hover:from-foreground/2 group-hover:via-foreground/1 group-hover:to-foreground/0 transition-all duration-700 pointer-events-none" />
-                
-                {/* Subtle shadow that intensifies on hover */}
-                <div className="absolute inset-0 shadow-sm group-hover:shadow-xl transition-shadow duration-700 pointer-events-none" />
+                {/* Combined overlay and shadow effect - optimized, reduced on mobile */}
+                <div className="absolute inset-0 bg-gradient-to-br from-foreground/0 via-foreground/0 to-foreground/0 md:group-hover:from-foreground/2 md:group-hover:via-foreground/1 md:group-hover:to-foreground/0 shadow-sm md:group-hover:shadow-xl transition-all duration-300 md:duration-500 pointer-events-none" />
                 
                 {/* Icon Watermark Background */}
                 <div className="absolute top-10 right-10 text-muted-foreground/12 group-hover:text-muted-foreground/20 transition-all duration-700 select-none">
@@ -97,7 +94,7 @@ export function ServicesSection() {
                         <service.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
                       </div>
                       {/* Subtle glow effect */}
-                      <div className="absolute inset-0 rounded-full bg-foreground/20 blur-xl group-hover:bg-foreground/30 transition-all duration-500 -z-10" />
+                      <div className="absolute inset-0 rounded-full bg-foreground/20 blur-sm md:blur-xl md:group-hover:bg-foreground/30 transition-all duration-500 -z-10" />
                     </div>
                     
                     <div className="flex-1 pt-1">

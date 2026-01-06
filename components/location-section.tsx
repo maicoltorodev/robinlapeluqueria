@@ -49,8 +49,8 @@ export function LocationSection() {
 
                 {/* Facade Image */}
                 <FramedImage
-                  src="/fachada.png"
-                  alt="Robin La Peluquería - Fachada"
+                  src="/fachada.png" 
+                  alt="Robin La Peluquería - Fachada" 
                   borderSize={8}
                   borderColor="foreground"
                   height="h-[300px] lg:h-[400px]"

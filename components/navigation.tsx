@@ -26,7 +26,7 @@ export function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background ${
-        isScrolled ? "backdrop-blur-sm border-b border-border" : ""
+        isScrolled ? "md:backdrop-blur-sm border-b border-border" : ""
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">

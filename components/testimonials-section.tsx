@@ -26,7 +26,8 @@ export function TestimonialsSection() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
     align: "start",
-    slidesToScroll: 1, // Siempre cambiar de 1 en 1
+    slidesToScroll: 1,
+    duration: 35, // Duración de la animación en frames (más alto = más suave, default es 20)
   })
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
@@ -59,21 +60,14 @@ export function TestimonialsSection() {
     fetchReviews()
   }, [])
 
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) {
-      emblaApi.scrollPrev()
-      // Disparar evento personalizado para resetear el autoplay
-      window.dispatchEvent(new CustomEvent('resetAutoplay'))
-    }
+  const handleScroll = useCallback((direction: "prev" | "next") => {
+    if (!emblaApi) return
+    direction === "prev" ? emblaApi.scrollPrev() : emblaApi.scrollNext()
+    window.dispatchEvent(new CustomEvent('resetAutoplay'))
   }, [emblaApi])
 
-  const scrollNext = useCallback(() => {
-    if (emblaApi) {
-      emblaApi.scrollNext()
-      // Disparar evento personalizado para resetear el autoplay
-      window.dispatchEvent(new CustomEvent('resetAutoplay'))
-    }
-  }, [emblaApi])
+  const scrollPrev = useCallback(() => handleScroll("prev"), [handleScroll])
+  const scrollNext = useCallback(() => handleScroll("next"), [handleScroll])
 
   const onSelect = useCallback((emblaApi: any) => {
     setPrevBtnDisabled(!emblaApi.canScrollPrev())
@@ -89,62 +83,30 @@ export function TestimonialsSection() {
 
   // Auto-scroll cada 8 segundos con reset al interactuar
   useEffect(() => {
-    if (!emblaApi) return
-
-    // Solo activar auto-scroll si hay más de 3 reseñas
-    const hasEnoughReviews = testimonials.length > 3
-    if (!hasEnoughReviews) return
+    if (!emblaApi || testimonials.length <= 3) return
 
     let autoplayInterval: NodeJS.Timeout | null = null
 
     const startAutoplay = () => {
-      // Limpiar intervalo anterior si existe
-      if (autoplayInterval) {
-        clearInterval(autoplayInterval)
-      }
-      
-      // Iniciar nuevo intervalo
-      autoplayInterval = setInterval(() => {
-        emblaApi.scrollNext()
-      }, 8000) // 8 segundos
+      if (autoplayInterval) clearInterval(autoplayInterval)
+      autoplayInterval = setInterval(() => emblaApi.scrollNext(), 8000)
     }
 
-    const resetAutoplay = () => {
-      // Reiniciar el contador desde cero
-      startAutoplay()
-    }
+    const resetAutoplay = () => startAutoplay()
+    const handleResetEvent = () => resetAutoplay()
 
-    // Iniciar autoplay
     startAutoplay()
-
-    // Escuchar eventos de interacción del usuario
-    const handlePointerDown = () => {
-      resetAutoplay()
-    }
-
-    const handleSelect = () => {
-      // Resetear también cuando cambia la slide (por si el usuario arrastra)
-      resetAutoplay()
-    }
-
-    // Escuchar evento personalizado desde los botones
-    const handleResetEvent = () => {
-      resetAutoplay()
-    }
-
-    emblaApi.on("pointerDown", handlePointerDown)
-    emblaApi.on("select", handleSelect)
+    emblaApi.on("pointerDown", resetAutoplay)
+    emblaApi.on("select", resetAutoplay)
     window.addEventListener("resetAutoplay", handleResetEvent)
 
     return () => {
-      if (autoplayInterval) {
-        clearInterval(autoplayInterval)
-      }
-      emblaApi.off("pointerDown", handlePointerDown)
-      emblaApi.off("select", handleSelect)
+      if (autoplayInterval) clearInterval(autoplayInterval)
+      emblaApi.off("pointerDown", resetAutoplay)
+      emblaApi.off("select", resetAutoplay)
       window.removeEventListener("resetAutoplay", handleResetEvent)
     }
-  }, [emblaApi])
+  }, [emblaApi, testimonials.length])
 
   // Ocultar la sección si está cargando o si hay error
   if (loading || hasError || testimonials.length === 0) {
@@ -196,7 +158,7 @@ export function TestimonialsSection() {
           {/* Carousel */}
           {testimonials.length > 0 && (
             <div className="relative">
-              <div className="overflow-hidden" ref={emblaRef}>
+              <div className="overflow-hidden" ref={emblaRef} style={{ scrollBehavior: 'smooth' }}>
                 <div className="flex gap-6">
                   {testimonials.map((testimonial) => (
                     <div
@@ -206,7 +168,7 @@ export function TestimonialsSection() {
                       <ScrollAnimation>
                         <div className="group relative h-full">
                           {/* Card Container - Estilo premium similar a quote-section */}
-                          <div className="relative bg-background/5 backdrop-blur-sm border border-border/20 rounded-lg md:rounded-xl p-6 sm:p-8 lg:p-10 h-full flex flex-col shadow-2xl hover:shadow-[0_0_40px_rgba(0,0,0,0.1)] transition-all duration-500">
+                          <div className="relative bg-background/5 md:backdrop-blur-sm border border-border/20 rounded-lg md:rounded-xl p-6 sm:p-8 lg:p-10 h-full flex flex-col shadow-2xl md:hover:shadow-[0_0_40px_rgba(0,0,0,0.1)] transition-all duration-300 md:duration-500">
                             {/* Subtle gradient overlay */}
                             <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 via-transparent to-foreground/2 rounded-lg md:rounded-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             
@@ -266,7 +228,7 @@ export function TestimonialsSection() {
                                     <div className="relative">
                                       {/* Skeleton loader mientras carga */}
                                       <div className="absolute inset-0 rounded-full bg-muted/30 animate-pulse" />
-                                      <div className="absolute inset-0 bg-gradient-to-br from-foreground/10 to-transparent rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                      <div className="absolute inset-0 bg-gradient-to-br from-foreground/10 to-transparent rounded-full blur-sm md:blur-md opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 hidden md:block" />
                                       <Image
                                         src={testimonial.profilePhoto}
                                         alt={testimonial.name}
@@ -306,19 +268,21 @@ export function TestimonialsSection() {
                 </div>
               </div>
 
-              {/* Navigation Buttons */}
-              <CarouselNavButton
-                direction="prev"
-                onClick={scrollPrev}
-                disabled={prevBtnDisabled}
-                ariaLabel="Reseña anterior"
-              />
-              <CarouselNavButton
-                direction="next"
-                onClick={scrollNext}
-                disabled={nextBtnDisabled}
-                ariaLabel="Siguiente reseña"
-              />
+              {/* Navigation Buttons - Hidden on mobile */}
+              <div className="hidden md:block">
+                <CarouselNavButton
+                  direction="prev"
+                  onClick={scrollPrev}
+                  disabled={prevBtnDisabled}
+                  ariaLabel="Reseña anterior"
+                />
+                <CarouselNavButton
+                  direction="next"
+                  onClick={scrollNext}
+                  disabled={nextBtnDisabled}
+                  ariaLabel="Siguiente reseña"
+                />
+              </div>
             </div>
           )}
 

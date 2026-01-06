@@ -22,7 +22,7 @@ export function CarouselNavButton({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`absolute top-1/2 -translate-y-1/2 ${positionClass} w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-background/95 backdrop-blur-sm border-2 border-border/70 shadow-xl flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground hover:scale-110 active:scale-95 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed z-10 touch-manipulation`}
+      className={`absolute top-1/2 -translate-y-1/2 ${positionClass} w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-background/95 md:backdrop-blur-sm border-2 border-border/70 shadow-xl flex items-center justify-center hover:bg-foreground hover:text-background hover:border-foreground hover:scale-110 active:scale-95 transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed z-10 touch-manipulation`}
       aria-label={ariaLabel}
     >
       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />

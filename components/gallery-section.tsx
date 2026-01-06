@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import Image from "next/image"
 import useEmblaCarousel from "embla-carousel-react"
 import { CarouselNavButton } from "@/components/ui/carousel-nav-button"
@@ -17,6 +17,9 @@ const galleryImages = [
   { src: "/castaña2.png", alt: "Trabajo de peluquería - Coloración 2" },
 ]
 
+const AUTOPLAY_DELAY = 3000
+const AUTOPLAY_DELAY_MOBILE = 5000 // Slower on mobile
+
 export function GallerySection() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
@@ -25,9 +28,48 @@ export function GallerySection() {
   })
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
+  const autoplayIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const isAutoplayRef = useRef(false)
 
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
+  const startAutoplay = useCallback(() => {
+    if (!emblaApi) return
+    
+    // Limpiar intervalo existente
+    if (autoplayIntervalRef.current) {
+      clearInterval(autoplayIntervalRef.current)
+    }
+    
+    // Detectar si es mobile
+    const isMobile = window.innerWidth < 640
+    const delay = isMobile ? AUTOPLAY_DELAY_MOBILE : AUTOPLAY_DELAY
+    
+    // Iniciar nuevo intervalo
+    autoplayIntervalRef.current = setInterval(() => {
+      isAutoplayRef.current = true
+      emblaApi.scrollNext()
+      // Resetear flag después de un pequeño delay para permitir que el evento se procese
+      setTimeout(() => {
+        isAutoplayRef.current = false
+      }, 100)
+    }, delay)
+  }, [emblaApi])
+
+  const stopAutoplay = useCallback(() => {
+    if (autoplayIntervalRef.current) {
+      clearInterval(autoplayIntervalRef.current)
+      autoplayIntervalRef.current = null
+    }
+  }, [])
+
+  const handleScroll = useCallback((direction: "prev" | "next") => {
+    if (!emblaApi) return
+    stopAutoplay()
+    direction === "prev" ? emblaApi.scrollPrev() : emblaApi.scrollNext()
+    startAutoplay()
+  }, [emblaApi, stopAutoplay, startAutoplay])
+
+  const scrollPrev = useCallback(() => handleScroll("prev"), [handleScroll])
+  const scrollNext = useCallback(() => handleScroll("next"), [handleScroll])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -41,21 +83,48 @@ export function GallerySection() {
     emblaApi.on("select", updateButtons)
     emblaApi.on("reInit", updateButtons)
 
-    // Iniciar desde índice aleatorio
-    const randomIndex = Math.floor(Math.random() * galleryImages.length)
-    emblaApi.scrollTo(randomIndex, false)
+    // Detectar cuando el usuario arrastra manualmente
+    const handlePointerDown = () => {
+      if (!isAutoplayRef.current) stopAutoplay()
+    }
 
-    // Auto-scroll cada 3 segundos
-    const autoplayInterval = setInterval(() => {
-      emblaApi.scrollNext()
-    }, 3000)
+    const handlePointerUp = () => {
+      if (!isAutoplayRef.current) startAutoplay()
+    }
+
+    // Escuchar eventos de interacción manual
+    emblaApi.on("pointerDown", handlePointerDown)
+    emblaApi.on("pointerUp", handlePointerUp)
+
+    // Esperar a que Embla esté completamente inicializado
+    const initializeCarousel = () => {
+      // Usar requestAnimationFrame para asegurar que el DOM esté listo
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          if (!emblaApi) return
+          
+          // Iniciar desde índice aleatorio con animación suave
+          const randomIndex = Math.floor(Math.random() * galleryImages.length)
+          emblaApi.scrollTo(randomIndex, true) // true = con animación
+          
+          // Iniciar autoplay después de que termine la animación del scroll
+          setTimeout(() => {
+            startAutoplay()
+          }, 600) // Tiempo suficiente para que termine la animación
+        }, 150)
+      })
+    }
+
+    initializeCarousel()
 
     return () => {
       emblaApi.off("select", updateButtons)
       emblaApi.off("reInit", updateButtons)
-      clearInterval(autoplayInterval)
+      emblaApi.off("pointerDown", handlePointerDown)
+      emblaApi.off("pointerUp", handlePointerUp)
+      stopAutoplay()
     }
-  }, [emblaApi])
+  }, [emblaApi, startAutoplay, stopAutoplay])
 
   return (
     <section id="gallery" className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-background relative overflow-hidden">
@@ -74,8 +143,8 @@ export function GallerySection() {
               <span className="inline-block text-muted-foreground animate-slide-in-right animate-gradient-shift" style={{ animationDelay: "0.4s" }}>
                 Habla por Sí Solo
               </span>
-            </h2>
-          </div>
+          </h2>
+        </div>
 
           {/* Carousel */}
           <div className="relative">
