@@ -47,7 +47,7 @@ export function ScrollAnimation({ children, className = "", delay = 0 }: ScrollA
   return (
     <div
       ref={ref}
-      className={`${isMobile ? "opacity-100 translate-y-0 transition-none" : "transition-all duration-1000 ease-out"} ${isVisible
+      className={`${isMobile ? "opacity-100 translate-y-0 transition-none" : "transition-all duration-400 ease-out"} ${isVisible
         ? "opacity-100 translate-y-0"
         : "opacity-0 translate-y-8"
         } ${className}`}

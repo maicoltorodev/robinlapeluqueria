@@ -74,6 +74,13 @@ export function Navigation() {
               Galería
             </Link>
             <Link
+              href="/#testimonials"
+              className="text-xs font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm px-2 py-1"
+              aria-label="Ir a la sección de Testimonios"
+            >
+              Testimonios
+            </Link>
+            <Link
               href="/#location"
               className="text-xs font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm px-2 py-1"
               aria-label="Ir a la sección de Ubicación"
@@ -141,6 +148,7 @@ export function Navigation() {
                 { name: "Servicios", href: "/#services" },
                 { name: "Estudio", href: "/#about" },
                 { name: "Galería", href: "/#gallery" },
+                { name: "Testimonios", href: "/#testimonials" },
                 { name: "Ubicación", href: "/#location" },
                 { name: "Contacto", href: "/#contact" },
               ].map((item, index) => (

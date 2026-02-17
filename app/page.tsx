@@ -7,6 +7,7 @@ const QuoteSection = dynamic(() => import("@/components/quote-section").then(mod
 const ServicesSection = dynamic(() => import("@/components/services-section").then(mod => ({ default: mod.ServicesSection })), { ssr: true })
 const AboutSection = dynamic(() => import("@/components/about-section").then(mod => ({ default: mod.AboutSection })), { ssr: true })
 const GallerySection = dynamic(() => import("@/components/gallery-section").then(mod => ({ default: mod.GallerySection })), { ssr: true })
+const TestimonialsSection = dynamic(() => import("@/components/testimonials-section").then(mod => ({ default: mod.TestimonialsSection })), { ssr: true })
 const LocationSection = dynamic(() => import("@/components/location-section").then(mod => ({ default: mod.LocationSection })), { ssr: true })
 const BookingSection = dynamic(() => import("@/components/booking-section").then(mod => ({ default: mod.BookingSection })), { ssr: true })
 const Footer = dynamic(() => import("@/components/footer").then(mod => ({ default: mod.Footer })), { ssr: true })
@@ -20,6 +21,7 @@ export default function Home() {
       <ServicesSection />
       <AboutSection />
       <GallerySection />
+      <TestimonialsSection />
       <LocationSection />
       <BookingSection />
       <Footer />

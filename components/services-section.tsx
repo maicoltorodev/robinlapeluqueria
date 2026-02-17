@@ -73,9 +73,9 @@ export function ServicesSection() {
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {services.map((service, index) => (
-              <ScrollAnimation key={index} delay={index * 150}>
+              <ScrollAnimation key={index} delay={index * 50}>
                 <div
-                  className="group relative bg-background border border-border/50 hover:border-foreground/30 transition-all duration-700 ease-out overflow-hidden"
+                  className="group relative bg-background border border-border/50 hover:border-foreground/30 transition-all duration-300 ease-out overflow-hidden"
                 >
                   {/* Combined overlay and shadow effect - optimized, reduced on mobile */}
                   <div className="absolute inset-0 bg-gradient-to-br from-foreground/0 via-foreground/0 to-foreground/0 md:group-hover:from-foreground/2 md:group-hover:via-foreground/1 md:group-hover:to-foreground/0 shadow-sm md:group-hover:shadow-xl transition-all duration-300 md:duration-500 pointer-events-none" />
