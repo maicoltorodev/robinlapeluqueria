@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Space_Grotesk, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { StructuredData } from "@/components/structured-data"
+import { CustomCursor } from "@/components/custom-cursor"
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({
@@ -117,6 +118,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${spaceGrotesk.variable} ${geistMono.variable} font-sans antialiased`}>
+        <CustomCursor />
         <StructuredData />
         {children}
         <Analytics />

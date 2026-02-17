@@ -10,9 +10,17 @@ interface ScrollAnimationProps {
 
 export function ScrollAnimation({ children, className = "", delay = 0 }: ScrollAnimationProps) {
   const [isVisible, setIsVisible] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768
+      setIsMobile(mobile)
+    }
+
+    checkMobile()
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -39,11 +47,10 @@ export function ScrollAnimation({ children, className = "", delay = 0 }: ScrollA
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ease-out ${
-        isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-8"
-      } ${className}`}
+      className={`${isMobile ? "opacity-100 translate-y-0 transition-none" : "transition-all duration-1000 ease-out"} ${isVisible
+        ? "opacity-100 translate-y-0"
+        : "opacity-0 translate-y-8"
+        } ${className}`}
     >
       {children}
     </div>

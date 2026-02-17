@@ -9,14 +9,14 @@ export function AboutSection() {
     <section id="about" className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-foreground text-background relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      
+
       {/* Decorative Elements - optimized blur */}
       <div className="absolute top-20 left-10 w-32 h-32 border border-background/10 rounded-full blur-2xl opacity-20 animate-pulse" />
       <div className="absolute bottom-20 right-10 w-40 h-40 border border-background/10 rounded-full blur-2xl opacity-15 animate-pulse" style={{ animationDelay: "1s" }} />
-      
+
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-[1600px] mx-auto">
-          
+
           {/* Header */}
           <div className="mb-12 sm:mb-16 lg:mb-24 text-center">
             <ScrollAnimation>
@@ -39,8 +39,8 @@ export function AboutSection() {
             <div className="lg:col-span-8">
               <ScrollAnimation delay={200}>
                 <FramedImage
-                  src="/estudio-1.png" 
-                  alt="Robin La Peluquería - Estudio 1" 
+                  src="/estudio-1.png"
+                  alt="Robin La Peluquería - Estudio 1"
                   borderSize={8}
                   borderColor="background"
                   height="h-[400px] lg:h-[500px]"
@@ -70,23 +70,23 @@ export function AboutSection() {
           {/* Content Row - Below */}
           <ScrollAnimation delay={300}>
             <div className="space-y-10 lg:space-y-12">
-              
+
               {/* Premium Stats Card */}
               <PremiumCard>
-                    <div className="grid grid-cols-3 gap-6 lg:gap-8">
-                      <div className="text-center">
-                        <div className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 text-background">10+</div>
-                        <div className="text-xs tracking-[0.15em] uppercase text-background/70 font-medium">Años de Experiencia</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 text-background">5K+</div>
-                        <div className="text-xs tracking-[0.15em] uppercase text-background/70 font-medium">Clientes Felices</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-3 text-background">15+</div>
-                        <div className="text-xs tracking-[0.15em] uppercase text-background/70 font-medium">Expertos</div>
-                      </div>
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6 lg:gap-8 py-4 sm:py-0">
+                  <div className="text-center">
+                    <div className="text-5xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 sm:mb-3 text-background">10+</div>
+                    <div className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-background/70 font-bold">Años de Experiencia</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-5xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 sm:mb-3 text-background">5K+</div>
+                    <div className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-background/70 font-bold">Clientes Felices</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-5xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-2 sm:mb-3 text-background">15+</div>
+                    <div className="text-[10px] sm:text-xs tracking-[0.2em] uppercase text-background/70 font-bold">Expertos</div>
+                  </div>
+                </div>
               </PremiumCard>
 
               {/* Description */}

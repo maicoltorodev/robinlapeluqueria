@@ -53,7 +53,7 @@ export function ServicesSection() {
     <section id="services" className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 bg-background relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-muted/30" />
-      
+
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="max-w-[1600px] mx-auto">
           {/* Section Header */}
@@ -67,49 +67,48 @@ export function ServicesSection() {
               <span className="inline-block text-muted-foreground animate-slide-in-right animate-gradient-shift" style={{ animationDelay: "0.4s" }}>
                 Completa
               </span>
-          </h2>
-        </div>
+            </h2>
+          </div>
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {services.map((service, index) => (
-            <ScrollAnimation key={index} delay={index * 150}>
-            <div
-                className="group relative bg-background border border-border/50 hover:border-foreground/30 transition-all duration-700 ease-out overflow-hidden"
-            >
-                {/* Combined overlay and shadow effect - optimized, reduced on mobile */}
-                <div className="absolute inset-0 bg-gradient-to-br from-foreground/0 via-foreground/0 to-foreground/0 md:group-hover:from-foreground/2 md:group-hover:via-foreground/1 md:group-hover:to-foreground/0 shadow-sm md:group-hover:shadow-xl transition-all duration-300 md:duration-500 pointer-events-none" />
-                
-                {/* Icon Watermark Background */}
-                <div className="absolute top-10 right-10 text-muted-foreground/12 group-hover:text-muted-foreground/20 transition-all duration-700 select-none">
-                  <service.icon className="w-36 h-36 lg:w-44 lg:h-44" strokeWidth={0.3} />
-                </div>
+            {services.map((service, index) => (
+              <ScrollAnimation key={index} delay={index * 150}>
+                <div
+                  className="group relative bg-background border border-border/50 hover:border-foreground/30 transition-all duration-700 ease-out overflow-hidden"
+                >
+                  {/* Combined overlay and shadow effect - optimized, reduced on mobile */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-foreground/0 via-foreground/0 to-foreground/0 md:group-hover:from-foreground/2 md:group-hover:via-foreground/1 md:group-hover:to-foreground/0 shadow-sm md:group-hover:shadow-xl transition-all duration-300 md:duration-500 pointer-events-none" />
 
-                {/* Content */}
-                <div className="relative z-10 p-6 sm:p-8 md:p-10 lg:p-14 space-y-6 sm:space-y-8">
-                  <div className="flex items-start gap-6">
-                    {/* Icon Circle - Premium style */}
-                    <div className="relative flex-shrink-0">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-foreground text-background flex items-center justify-center group-hover:scale-110 group-hover:shadow-lg transition-all duration-500">
-                        <service.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" />
+                  {/* Icon Watermark Background */}
+                  <div className="absolute top-10 right-10 text-muted-foreground/12 group-hover:text-muted-foreground/20 transition-all duration-700 select-none">
+                    <service.icon className="w-36 h-36 lg:w-44 lg:h-44" strokeWidth={0.3} />
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative z-10 p-6 sm:p-10 lg:p-14 space-y-6 sm:space-y-8">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 text-center sm:text-left">
+                      {/* Icon Circle - Premium style */}
+                      <div className="relative flex-shrink-0">
+                        <div className="w-14 h-14 sm:w-16 lg:w-20 rounded-full bg-foreground text-background flex items-center justify-center group-hover:scale-110 group-hover:shadow-lg transition-all duration-500">
+                          <service.icon className="w-6 h-6 sm:w-7 lg:w-10" />
+                        </div>
+                        <div className="absolute inset-0 rounded-full bg-foreground/20 blur-xl md:group-hover:bg-foreground/30 transition-all duration-500 -z-10" />
                       </div>
-                      {/* Subtle glow effect */}
-                      <div className="absolute inset-0 rounded-full bg-foreground/20 blur-sm md:blur-xl md:group-hover:bg-foreground/30 transition-all duration-500 -z-10" />
+
+                      <div className="flex-1 pt-1">
+                        <h3 className="text-2xl sm:text-2xl lg:text-4xl font-bold tracking-tight mb-2 sm:mb-4 group-hover:text-foreground transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        <p className="text-muted-foreground/80 leading-relaxed text-sm sm:text-base lg:text-xl font-light">
+                          {service.description}
+                        </p>
+                      </div>
                     </div>
-                    
-                    <div className="flex-1 pt-1">
-                      <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-3 sm:mb-4 group-hover:text-foreground transition-colors duration-300">
-                        {service.title}
-                      </h3>
-                      <p className="text-muted-foreground/80 leading-relaxed text-sm sm:text-base md:text-lg lg:text-xl font-light">
-                    {service.description}
-                  </p>
-                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            </ScrollAnimation>
-          ))}
+              </ScrollAnimation>
+            ))}
           </div>
         </div>
       </div>
