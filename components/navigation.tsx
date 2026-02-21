@@ -53,6 +53,13 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <Link
+              href="/#catalogo"
+              className="text-xs font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm px-2 py-1"
+              aria-label="Ir a la sección de Tienda"
+            >
+              Tienda
+            </Link>
+            <Link
               href="/#services"
               className="text-xs font-medium tracking-[0.2em] uppercase hover:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm px-2 py-1"
               aria-label="Ir a la sección de Servicios"
@@ -145,6 +152,7 @@ export function Navigation() {
 
             <div className="flex-1 flex flex-col items-center justify-center gap-8 px-4">
               {[
+                { name: "Tienda", href: "/#catalogo" },
                 { name: "Servicios", href: "/#services" },
                 { name: "Estudio", href: "/#about" },
                 { name: "Galería", href: "/#gallery" },

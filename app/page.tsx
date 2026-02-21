@@ -10,6 +10,7 @@ const GallerySection = dynamic(() => import("@/components/gallery-section").then
 const TestimonialsSection = dynamic(() => import("@/components/testimonials-section").then(mod => ({ default: mod.TestimonialsSection })), { ssr: true })
 const LocationSection = dynamic(() => import("@/components/location-section").then(mod => ({ default: mod.LocationSection })), { ssr: true })
 const BookingSection = dynamic(() => import("@/components/booking-section").then(mod => ({ default: mod.BookingSection })), { ssr: true })
+const CatalogSection = dynamic(() => import("@/components/catalog-section").then(mod => ({ default: mod.CatalogSection })), { ssr: true })
 const Footer = dynamic(() => import("@/components/footer").then(mod => ({ default: mod.Footer })), { ssr: true })
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Navigation />
       <HeroSection />
+      <CatalogSection />
       <QuoteSection />
       <ServicesSection />
       <AboutSection />
